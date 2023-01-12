@@ -1,0 +1,44 @@
+service: curso-sls
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  getAllPersonas:
+    handler: src/controller/personas.getAllPersonas
+    events:
+      - http:
+          path: personas/get-all
+          method: get
+  getPersona:
+    handler: src/controller/personas.getPersona
+    events:
+      - http:
+          path: personas/get-person/{cedula}
+          method: get
+  addPersona:
+    handler: src/controller/personas.addPersona
+    events:
+      - http:
+          path: personas/add-person
+          method: post
+  deletePersona:
+    handler: src/controller/personas.deletePersona
+    events:
+      - http:
+          path: personas/delete-person/{cedula}
+          method: delete
+  editPersona:
+    handler: src/controller/personas.editPersona
+    events:
+      - http:
+          path: personas/edit-person/{cedula}
+          method: put
