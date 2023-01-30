@@ -1,6 +1,6 @@
 'use strict';
 
-import { APIGatewayEvent } from 'aws-lambda';
+import { APIGatewayEvent } from "aws-lambda";
 import { getConnection } from "../database/database"
 
 export const getAllPersonas = async (event: APIGatewayEvent) => {
@@ -15,7 +15,7 @@ export const getAllPersonas = async (event: APIGatewayEvent) => {
         body: JSON.stringify(
           {
             message: 'Success',
-            data: result
+            data: result,
           },
         ),
       };
@@ -33,6 +33,8 @@ export const getAllPersonas = async (event: APIGatewayEvent) => {
     }
     
   } catch (error) {
+
+    console.log(error)
 
     return {
       statusCode: 400,

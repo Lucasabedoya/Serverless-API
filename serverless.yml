@@ -2,14 +2,18 @@ service: curso-sls
 
 plugins:
   - serverless-offline
-  - serverless-plugin-typescript
   - serverless-dotenv-plugin
+  - serverless-plugin-typescript
+useDotenv: true
 
 frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  profile: default
 
 functions:
   getAllPersonas:
